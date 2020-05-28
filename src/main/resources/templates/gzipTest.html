@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>GzipTest</title>
+
+    <script th:src="@{lib/jquery.js}" src="/static/lib/jquery.js"></script>
+    <script th:src="@{lib/pako.min.js}" src="/static/lib/pako.min.js"></script>
+</head>
+
+<body>
+你好
+</body>
+<script>
+    $.get("gzip/grid", function (data) {
+        console.log(unzip(data));
+    });
+
+    // 解压
+    function unzip(b64Data) {
+        var strData = atob(b64Data);
+        var charData = strData.split('').map(function (x) {
+            return x.charCodeAt(0);
+        });
+        var binData = new Uint8Array(charData);
+        var data = pako.inflate(binData);
+        array = new Uint16Array(data)
+        var res = '';
+        var chunk = 8 * 1024;
+        var i;
+        for (i = 0; i < array.length / chunk; i++) {
+            res += String.fromCharCode.apply(null, array.slice(i * chunk, (i + 1) * chunk));
+        }
+        res += String.fromCharCode.apply(null, array.slice(i * chunk));
+        strData = res
+        return strData;
+    }
+
+</script>
+
+</html>
