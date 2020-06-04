@@ -65,6 +65,23 @@ export const asyncRoutes = [
       },
     ],
   }, */
+  {
+    path: "/map",
+    component: Layout,
+    redirect: "noRedirect",
+    children: [
+      {
+        path: "map",
+        name: "Map",
+        component: () => import("@/views/map/index"),
+        meta: {
+          title: "GIS叠加",
+          icon: "map",
+          permissions: ["admin", "test"],
+        },
+      },
+    ],
+  },
 
   {
     path: "/byui",
