@@ -5,6 +5,10 @@ import router from "./router";
 import "./plugins";
 import "leaflet/dist/leaflet.css";
 
+import axios from 'axios';
+
+Vue.prototype.$axios = axios;
+
 if (process.env.NODE_ENV === "test") {
   const { mockXHR } = require("../mock/static");
   mockXHR();
