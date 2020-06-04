@@ -53,6 +53,15 @@ module.exports = {
       errors: true,
     },
     after: mockServer(),
+    // proxy: {
+    //   '/local': {
+    //     target: 'http://localhost:'+devPort,
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/': ''
+    //     }
+    //   }
+    // }
   },
   configureWebpack(config) {
     return {
@@ -113,7 +122,12 @@ module.exports = {
       module: {
         // 解决Critical dependency: require function is used in a way in which dependencies cannot be statically extracted的问题
         unknownContextCritical: false,
-        // unknownContextRegExp: /^.\/.*$/
+        rules: [
+          {
+            test: /\.txt$/,
+            use: [{ loader: "vue-loader" }],
+          },
+        ],
       },
     };
   },

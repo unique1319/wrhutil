@@ -69,13 +69,27 @@ export const asyncRoutes = [
     path: "/cesium",
     component: Layout,
     redirect: "noRedirect",
+    meta: {
+      title: "CESIUM",
+      icon: "map",
+    },
     children: [
       {
         path: "colormap",
         name: "ColorMap",
         component: () => import("@/views/cesium/grid/colormap"),
         meta: {
-          title: "ColorMap",
+          title: "格点填色(Primitive)",
+          icon: "marker",
+          permissions: ["admin", "test"],
+        },
+      },
+      {
+        path: "colormap2",
+        name: "ColorMap2",
+        component: () => import("@/views/cesium/grid/colormap2"),
+        meta: {
+          title: "GeoJson(DateSource)",
           icon: "marker",
           permissions: ["admin", "test"],
         },

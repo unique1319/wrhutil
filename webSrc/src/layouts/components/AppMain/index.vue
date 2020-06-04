@@ -14,11 +14,11 @@
         <router-view :key="key" style="min-height: 80.6vh;" />
       </keep-alive>
     </transition>
-    <footer class="footer-copyright">
-      Copyright
-      <byui-icon :icon="['fas', 'copyright']"></byui-icon>
-      {{ fullYear }} {{ copyright }}
-    </footer>
+<!--    <footer class="footer-copyright">-->
+<!--      Copyright-->
+<!--      <byui-icon :icon="['fas', 'copyright']"></byui-icon>-->
+<!--      {{ fullYear }} {{ copyright }}-->
+<!--    </footer>-->
   </section>
 </template>
 
