@@ -10,6 +10,7 @@ const {
   devPort,
 } = require("./src/config/settings");
 const { version, author } = require("./package.json");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const Webpack = require("webpack");
 const WebpackBar = require("webpackbar");
 const FileManagerPlugin = require("filemanager-webpack-plugin");
@@ -20,6 +21,7 @@ const productionGzipExtensions = ["html", "js", "css", "svg"];
 process.env.VUE_APP_AUTHOR = author;
 process.env.VUE_APP_UPDATE_TIME = time;
 process.env.VUE_APP_VERSION = version;
+
 function resolve(dir) {
   return path.join(__dirname, dir);
 }
@@ -59,6 +61,7 @@ module.exports = {
         alias: {
           "@": resolve("src"),
           "^": resolve("src/components"),
+          cesium: resolve("node_modules/cesium/Source"),
         },
       },
       plugins: [
@@ -74,7 +77,44 @@ module.exports = {
         new WebpackBar({
           name: `\u0076\u0075\u0065\u002d\u0061\u0064\u006d\u0069\u006e\u002d\u0062\u0065\u0061\u0075\u0074\u0069\u0066\u0075\u006c`,
         }),
+        // Copy Cesium Assets, Widgets, and Workers to a static directory
+        new CopyWebpackPlugin([
+          {
+            from: path.join(
+              "node_modules/cesium/Source",
+              "../Build/Cesium/Workers"
+            ),
+            to: "Workers",
+          },
+        ]),
+        new CopyWebpackPlugin([
+          {
+            from: path.join("node_modules/cesium/Source", "Assets"),
+            to: "Assets",
+          },
+        ]),
+        new CopyWebpackPlugin([
+          {
+            from: path.join("node_modules/cesium/Source", "Widgets"),
+            to: "Widgets",
+          },
+        ]),
+        new CopyWebpackPlugin([
+          {
+            from: path.join("node_modules/cesium/Source", "ThirdParty/Workers"),
+            to: "ThirdParty/Workers",
+          },
+        ]),
+        new Webpack.DefinePlugin({
+          // Define relative base path in cesium for loading assets
+          CESIUM_BASE_URL: JSON.stringify("./"),
+        }),
       ],
+      module: {
+        // 解决Critical dependency: require function is used in a way in which dependencies cannot be statically extracted的问题
+        unknownContextCritical: false,
+        // unknownContextRegExp: /^.\/.*$/
+      },
     };
   },
   chainWebpack(config) {

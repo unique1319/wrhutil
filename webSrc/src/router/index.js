@@ -65,7 +65,23 @@ export const asyncRoutes = [
       },
     ],
   }, */
-
+  {
+    path: "/cesium",
+    component: Layout,
+    redirect: "noRedirect",
+    children: [
+      {
+        path: "colormap",
+        name: "ColorMap",
+        component: () => import("@/views/cesium/grid/colormap"),
+        meta: {
+          title: "ColorMap",
+          icon: "marker",
+          permissions: ["admin", "test"],
+        },
+      },
+    ],
+  },
   {
     path: "/byui",
     component: Layout,
