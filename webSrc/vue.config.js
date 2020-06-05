@@ -9,7 +9,7 @@ const {
   abbreviation,
   devPort,
 } = require("./src/config/settings");
-const { version, author } = require("./package.json");
+const {version, author} = require("./package.json");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const Webpack = require("webpack");
 const WebpackBar = require("webpackbar");
@@ -35,7 +35,7 @@ function mockServer() {
   }
 }
 
-const name = title || "vue-admin-beautiful";
+const name = title || "wrhutil";
 
 module.exports = {
   publicPath,
@@ -125,7 +125,7 @@ module.exports = {
         rules: [
           {
             test: /\.txt$/,
-            use: [{ loader: "vue-loader" }],
+            use: [{loader: "vue-loader"}],
           },
         ],
       },
@@ -147,7 +147,7 @@ module.exports = {
       .end()
       .use("svg-sprite-loader")
       .loader("svg-sprite-loader")
-      .options({ symbolId: "remix-icon-[name]" })
+      .options({symbolId: "remix-icon-[name]"})
       .end();
     config.module
       .rule("colorfulIcon")
@@ -156,7 +156,7 @@ module.exports = {
       .end()
       .use("svg-sprite-loader")
       .loader("svg-sprite-loader")
-      .options({ symbolId: "colorful-icon-[name]" })
+      .options({symbolId: "colorful-icon-[name]"})
       .end();
     config.module
       .rule("vue")
@@ -176,7 +176,7 @@ module.exports = {
       config
         .plugin("ScriptExtHtmlWebpackPlugin")
         .after("html")
-        .use("script-ext-html-webpack-plugin", [{ inline: /runtime\..*\.js$/ }])
+        .use("script-ext-html-webpack-plugin", [{inline: /runtime\..*\.js$/}])
         .end();
       config.optimization.splitChunks({
         chunks: "all",

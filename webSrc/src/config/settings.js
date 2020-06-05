@@ -1,6 +1,6 @@
 module.exports = {
   // 部署时的URL
-  publicPath: "",
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '',
   // 生产环境构建文件的目录名
   outputDir: "dist",
   // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
@@ -14,7 +14,7 @@ module.exports = {
   //简写
   abbreviation: "vab",
   //开发环境端口号
-  devPort: "80",
+  devPort: "8088",
   //版本号
   version: process.env.VUE_APP_VERSION,
   //烦请保留package.json作者信息 如需去除请联系群主QQ 1204505056 需支付299元 恶意修改发生纠纷及出现任何问题 由修改人自行承担
