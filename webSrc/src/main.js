@@ -5,7 +5,7 @@ import router from "./router";
 import "./plugins";
 import "leaflet/dist/leaflet.css";
 
-import axios from 'axios';
+import axios from "axios";
 
 Vue.prototype.$axios = axios;
 

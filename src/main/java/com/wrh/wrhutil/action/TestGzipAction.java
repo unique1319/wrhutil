@@ -25,8 +25,8 @@ public class TestGzipAction {
     @ApiOperation(value = "测试Gzip")
     @RequestMapping(value = "/grid", method = RequestMethod.GET)
     public String testGrid() throws JsonProcessingException {
-        int len1 = 500;
-        int len2 = 300;
+        int len1 = 800;
+        int len2 = 800;
         float[][] grid = new float[len1][len2];
         for (int i = 0; i < len1; i++) {
             for (int j = 0; j < len2; j++) {
@@ -36,7 +36,7 @@ public class TestGzipAction {
         ObjectMapper objectMapper = new ObjectMapper();
         byte[] data = objectMapper.writeValueAsBytes(grid);
 
-//        return data;
+//        return new String(data);
         return GZIPUtil.compressByStr(new String(data));
     }
 
