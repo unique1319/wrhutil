@@ -52,16 +52,18 @@ module.exports = {
       warnings: true,
       errors: true,
     },
-    after: mockServer(),
-    // proxy: {
-    //   '/local': {
-    //     target: 'http://localhost:'+devPort,
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/': ''
-    //     }
-    //   }
-    // }
+    https: false,
+    hotOnly: false,
+    // after: mockServer(),  // 开发环境下是否启用mock
+    proxy: {
+      '/devTest': {
+        target: 'http://localhost:8080/wrh',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/devTest': ''
+        }
+      }
+    }
   },
   configureWebpack(config) {
     return {

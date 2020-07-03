@@ -2,13 +2,11 @@ package com.wrh.wrhutil.action;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wrh.wrhutil.GZIPUtil;
+import com.wrh.wrhutil.util.GZIPUtil;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.springframework.web.bind.annotation.*;
-
-import static com.wrh.wrhutil.GZIPUtil.compressByByte;
 
 /**
  * @author wrh

@@ -7,6 +7,7 @@ import {
 } from "@/utils/accessToken";
 import { resetRouter } from "@/router";
 import { tokenName, title } from "@/config/settings";
+import {Random} from "mockjs";
 
 const state = {
   accessToken: getAccessToken(),
@@ -36,8 +37,9 @@ const mutations = {
 };
 const actions = {
   async login({ commit }, userInfo) {
-    const { data } = await login(userInfo);
-    const accessToken = data[tokenName];
+    // const { data } = await login(userInfo);
+    // const accessToken = data[tokenName];
+    var accessToken = "wrhtesttestsets"
     if (accessToken) {
       commit("setAccessToken", accessToken);
       setAccessToken(accessToken);
@@ -61,12 +63,16 @@ const actions = {
     }
   },
   async getInfo({ commit, state }) {
-    const { data } = await getInfo(state.accessToken);
-    if (!data) {
-      Vue.prototype.$baseMessage("验证失败，请重新登录...", "error");
-      return false;
-    }
-    let { permissions, userName, avatar } = data;
+    // const { data } = await getInfo(state.accessToken);
+    // if (!data) {
+    //   Vue.prototype.$baseMessage("验证失败，请重新登录...", "error");
+    //   return false;
+    // }
+    // let { permissions, userName, avatar } = data;
+
+    let permissions = ["admin", "editor", "test"];
+    let userName = "test";
+    let avatar =  handleRandomImage(50, 50);
     if (permissions && userName && avatar) {
       commit("setPermissions", permissions);
       commit("setUserName", userName);
@@ -78,8 +84,8 @@ const actions = {
     }
   },
   async logout({ commit, dispatch }) {
-    await logout(state.accessToken);
-    await dispatch("tagsBar/delAllRoutes", null, { root: true });
+    // await logout(state.accessToken);
+    // await dispatch("tagsBar/delAllRoutes", null, { root: true });
     commit("setAccessToken", "");
     commit("setPermissions", []);
     removeAccessToken();
@@ -90,4 +96,10 @@ const actions = {
     removeAccessToken();
   },
 };
+
+
+function handleRandomImage(width = 50, height = 50) {
+  return `https://picsum.photos/${width}/${height}?random=${Random.guid()}`;
+}
+
 export default { state, getters, mutations, actions };

@@ -1,4 +1,4 @@
-package com.wrh.wrhutil;
+package com.wrh.wrhutil.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -1,4 +1,4 @@
-package com.wrh.wrhutil;
+package com.wrh.wrhutil.util;
 
 import lombok.extern.slf4j.Slf4j;
 import ucar.ma2.ArrayFloat;

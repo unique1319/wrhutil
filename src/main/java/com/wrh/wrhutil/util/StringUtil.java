@@ -1,4 +1,4 @@
-package com.wrh.wrhutil;
+package com.wrh.wrhutil.util;
 
 import java.util.regex.Pattern;
 
