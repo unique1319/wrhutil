@@ -20,6 +20,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("gzipTest");
         registry.addViewController("/gzipTest").setViewName("gzipTest");
+        registry.addViewController("/mist").setViewName("mist");
         super.addViewControllers(registry);
     }
 

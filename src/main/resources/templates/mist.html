@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="cache-control" content="no-cache"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>mist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #box {
+            width: 1366px;
+            height: 768px;
+            overflow: hidden;
+            position: relative;
+            background: black;
+        }
+
+        #box ul {
+            display: block;
+            width: 2666px;
+            height: 100%;
+            animation: yd 10s linear infinite;
+        }
+
+        #box ul li {
+            float: left;
+            list-style: none;
+
+        }
+
+        .image {
+            width: 1333px;
+            height: auto;
+
+        }
+
+        @keyframes yd {
+            to {
+                transform: translate(-1333px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div id="box">
+    <ul>
+        <li><img th:src="@{img/mist/fog.png}" src="/static/img/mist/fog.png" alt="" class="image"></li>
+        <li><img th:src="@{img/mist/fog.png}" src="/static/img/mist/fog.png" alt="" class="image"></li>
+        <li><img th:src="@{img/mist/fog.png}" src="/static/img/mist/fog.png" alt="" class="image"></li>
+    </ul>
+</div>
+</body>
+</html>
