@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 
 /**
@@ -82,6 +83,22 @@ public class DateUtil {
     public static LocalDateTime stringToLocalDateTime(String timeStr, String fmt) {
         Date date = parseDate(timeStr, fmt);
         return dateToLocalDateTime(date);
+    }
+
+    /**
+     * @description : 获取本月最后一天
+     * @date : 2020/7/23 14:45
+     */
+    public static LocalDateTime getLastDayOfMonth(LocalDateTime dateTime) {
+        return dateTime.with(TemporalAdjusters.lastDayOfMonth());
+    }
+
+    /**
+     * @description : 获取本月第一天
+     * @date : 2020/7/23 14:46
+     */
+    public static LocalDateTime getFirstDayOfMonth(LocalDateTime dateTime) {
+        return dateTime.with(TemporalAdjusters.firstDayOfMonth());
     }
 
 
